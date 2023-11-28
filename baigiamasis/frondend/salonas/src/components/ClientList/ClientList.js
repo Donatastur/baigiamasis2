@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Clients from "../Clients/Clients";
 
-const endpoint = "http://localhost:3001/clients";
+const endpoint = "http://localhost:3001/client";
 
 export default function ClientList() {
   const [clients, setClients] = useState([]);

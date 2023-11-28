@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-const endpoint = "http://localhost:3001/clients";
+
+const endpoint = "http://localhost:3001/client";
 
 export default function EditClients() {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default function EditClients() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("${endpoint}/${id}").then(({ data }) => {
+    axios.get(`${endpoint}/${id}`).then(({ data }) => {
       console.log(data.date);
       setName(data.name);
       setLastname(data.lastname);
@@ -27,7 +28,7 @@ export default function EditClients() {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-      .put("${endpoint}/${id}", {
+      .put(`${endpoint}/${id}`, {
         name,
         lastname,
         email,
@@ -73,7 +74,7 @@ export default function EditClients() {
         <br />
         <label htmlFor="">Time</label>
         <input
-          type="number"
+          type="text"
           value={time}
           onChange={(e) => setTime(e.target.value)}
         />{" "}

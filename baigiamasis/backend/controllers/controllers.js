@@ -6,18 +6,18 @@ export async function addNewClient(req, res) {
     return res.json({ message: "netinkamai uzpildyta" });
   }
   try {
-    const client = Client({
+    const client = new Client({
       name,
       lastname,
       email,
       date,
       time,
     });
-    await client.save();
+    await Client.save();
 
     res.json(client);
   } catch (error) {
-    res, status(500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 }
 
@@ -30,7 +30,7 @@ export async function getAllClient(req, res) {
   }
 }
 
-export async function getClientById(reg, res) {
+export async function getClientById(req, res) {
   const { id } = req.params;
   try {
     const client = await Client.findById(id);
@@ -40,14 +40,15 @@ export async function getClientById(reg, res) {
   }
 }
 
-export async function deleteClient(reg, res) {
+export async function deleteClient(req, res) {
   const { id } = req.params;
   try {
     const client = await Client.findById(id);
     if (!client) {
-      return res.status(404), json({ message: "Client not found" });
+      return res.status(404), json({ message: "client not found" });
     }
     await Client.findByIdAndDelete(id);
+
     res.status(204).json({ message: "Client deleted" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -61,7 +62,7 @@ export async function updateClient(req, res) {
     return res.status(404), json({ message: "Client not found" });
   }
   try {
-    const clients = await Client.findById(id);
+    const client = await Client.findById(id);
     if (!client) {
       return res.status(404), json({ message: "Client not found" });
     }

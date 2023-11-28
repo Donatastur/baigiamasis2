@@ -18,17 +18,15 @@ const clientsSchema = mongoose.Schema({
     type: String,
     require: true,
     minLength: 1,
-    maxLength: 35,
+    maxLength: 60,
   },
-  data: {
+  date: {
     type: Date,
     require: true,
   },
   time: {
-    type: Number,
+    type: String,
     require: true,
-    min: 1,
-    max: 13,
   },
 });
 

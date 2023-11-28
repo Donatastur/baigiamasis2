@@ -2,14 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const endpoint = "http://localhost:3001/clients";
+const endpoint = "http://localhost:3001/client";
 
 export default function Clients({ clients, setClients }) {
   const navigate = useNavigate();
 
   function handleDelete() {
     axios
-      .delete("${endpoint}/${clients._id}")
+      .delete(`${endpoint}/${clients._id}`)
       .then(() => {
         setClients((prev) => prev.filter((p) => p._id !== clients._id));
       })
@@ -20,13 +20,16 @@ export default function Clients({ clients, setClients }) {
   }
 
   function handleUpdate() {
-    navigate("/edit/${clients._id}");
+    navigate(`/edit/${clients._id}`);
   }
 
   return (
     <tr>
-      <td>{clients.name}</td>;<td>{clients.lastname}</td>;
-      <td>{clients.email}</td>;<td>{clients.date}</td>;<td>{clients.time}</td>;
+      <td>{clients.name}</td>
+      <td>{clients.lastname}</td>
+      <td>{clients.email}</td>
+      <td>{clients.date}</td>
+      <td>{clients.time}</td>
       <td>
         <button onClick={handleDelete}>Istrinti</button>
       </td>
