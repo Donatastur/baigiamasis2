@@ -1,44 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const endpoint = "http://localhost:3001/client";
 
-export default function EditClients() {
+export default function CreadedClients() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get(`${endpoint}/${id}`).then(({ data }) => {
-      console.log(data.date);
-      setName(data.name);
-      setLastname(data.lastname);
-      setEmail(data.email);
-      setDate(data.date.split("T")[0]);
-      setTime(data.time);
-    });
-  }, [id]);
-
-  function handleSubmit(e) {
+  async function buttonHandler(e) {
     e.preventDefault();
-    axios
-      .put(`${endpoint}/${id}`, {
+    try {
+      const { data } = await axios.post(endpoint, {
         name,
         lastname,
         email,
         date,
         time,
-      })
-      .then(() => {
-        navigate("/");
-      })
-      .catch(() => alert("Ivyko klaida"));
+      });
+      console.log(data);
+    } catch (error) {
+      alert(error);
+    }
+  }
+  function buttonHandler() {
+    navigate(`/creaded/`);
   }
 
   return (
@@ -48,8 +38,12 @@ export default function EditClients() {
           <img src="https://i.pinimg.com/736x/63/1e/b6/631eb669e2f3d548cb278e280bde0ab6.jpg"></img>
           <div>
             <div className="nuoroda">
-              <a href="/">Klientai</a>
-              <a href="/creaded">Registracija</a>
+              <a className="nuoroda" href="/">
+                Klientai
+              </a>
+              <a className="nuoroda" href="/creaded">
+                Registracija
+              </a>
             </div>
             <p>UAB"Mise"</p>
             <p>Kaunas, Petro.16</p>
@@ -57,43 +51,47 @@ export default function EditClients() {
           </div>
         </header>
       </div>
-
-      <div className="h1,registracija">
-        <form className="registracija" onSubmit={handleSubmit}>
-          <label htmlFor="">Vardas</label>
+      <div className="registracija">
+        <form className="registracija, h1" onSubmit={buttonHandler}>
+          <label htmlFor="nameInput">Vardas</label>
           <input
             type="text"
+            id="nameInput"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          />{" "}
+          />
           <br />
-          <label htmlFor="">Pavarde</label>
+          <label htmlFor="lastnameInput">Pavarde</label>
           <input
             type="text"
+            id="lastnameInput"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
-          />{" "}
+          />
           <br />
-          <label htmlFor="">Email</label>
+          <label htmlFor="emailInput">Email</label>
           <input
             type="text"
+            id="emailInput"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />{" "}
           <br />
-          <label htmlFor="">Data</label>
+          <label htmlFor="dateInput">Data</label>
           <input
             type="date"
+            id="dateInput"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-          />{" "}
+          />
           <br />
-          <label htmlFor="">Laikas</label>
+          <label htmlFor="timeInput">Laikas</label>
           <input
             type="text"
+            id="timeInput"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-          />{" "}
+          />
           <br />
           <button className="button" type="submit">
             Issaugoti

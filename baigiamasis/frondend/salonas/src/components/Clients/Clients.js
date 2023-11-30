@@ -24,17 +24,21 @@ export default function Clients({ clients, setClients }) {
   }
 
   return (
-    <tr>
+    <tr className="center">
       <td>{clients.name}</td>
       <td>{clients.lastname}</td>
       <td>{clients.email}</td>
-      <td>{clients.date}</td>
+      <td>{clients.date.split("T")[0]} </td>
       <td>{clients.time}</td>
       <td>
-        <button onClick={handleDelete}>Istrinti</button>
+        <button className="button" onClick={handleDelete}>
+          Istrinti
+        </button>
       </td>
       <td>
-        <button onClick={handleUpdate}>Atnaujinti</button>
+        <button className="button" onClick={handleUpdate}>
+          Atnaujinti
+        </button>
       </td>
     </tr>
   );

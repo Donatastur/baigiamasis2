@@ -1,1 +1,68 @@
 
+.imgg {
+  
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 20px;
+  padding: 5px 10px;
+  text-decoration: none;
+  color:white;
+  align-items: center;
+  background-color: #a46363;
+  box-shadow: 0 2px 4px #0000001a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 10px;
+  
+}
+.imgg img {width:200px;}
+
+* {
+  box-sizing: border-box;
+}
+.h1  {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.lentele {
+  border: 2px solid #d2b4b4;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px #0000001a;
+  margin: 10px auto;
+  width: 100%;
+  width: 80%;
+}
+.footer{
+  box-sizing: content-box;
+  height: 5px;
+  margin: 0;
+  padding: 0;
+  color: #a46363;
+}
+
+.registracija
+{
+  background-color: #c7acac;
+  border: 1px solid #d8cece;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0000001a;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0 auto;
+  padding: 10px;
+  width: 500px;
+}
+.center{
+ text-align: center;
+ color: #a46363;
+}
+.button{color: white;
+background-color: #d58f8f;}
+.nuoroda {text-decoration: none;
+padding:50px ;
+}
